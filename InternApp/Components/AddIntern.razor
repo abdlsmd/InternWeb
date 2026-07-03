@@ -1,0 +1,47 @@
+@page "/addintern"
+@rendermode InteractiveServer
+
+@using InternApp.Models
+@inject InternApp.BLL.InternService internService
+@inject NavigationManager Navigation
+
+<h3>Add Intern</h3>
+
+<EditForm Model="@intern" OnValidSubmit="SaveIntern">
+
+    <div class="mb-3">
+        <label>Name</label>
+        <InputText class="form-control" @bind-Value="intern.Name" />
+    </div>
+
+    <div class="mb-3">
+        <label>Email</label>
+        <InputText class="form-control" @bind-Value="intern.Email" />
+    </div>
+
+    <div class="mb-3">
+        <label>Department</label>
+        <InputText class="form-control" @bind-Value="intern.Department" />
+    </div>
+
+    <div class="mb-3">
+        <label>Duration (Months)</label>
+        <InputNumber class="form-control" @bind-Value="intern.DurationInMonths" />
+    </div>
+
+    <button type="submit" class="btn btn-success">
+        Save
+    </button>
+
+</EditForm>
+
+@code
+{
+    private Intern intern = new();
+
+    private void SaveIntern()
+    {
+        internService.AddIntern(intern);
+        Navigation.NavigateTo("/interns");
+    }
+}
