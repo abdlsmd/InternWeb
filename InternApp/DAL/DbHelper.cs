@@ -14,7 +14,7 @@ namespace InternApp.DAL
         public SqlConnection GetConnection()
         {
             return new SqlConnection(
-                _configuration.GetConnectionString("DefaultConnection"));
+                _configuration.GetConnectionString("\"Server=localhost;Database=InternDB;Trusted_Connection=True;TrustServerCertificate=True;\""));
         }
     }
 }
